@@ -8,7 +8,9 @@ Skylight = function(json) {
     var max_workers = json.meta.max_workers;
     var total_grid_size=800;
     var space_scale = Math.floor(total_grid_size / grid_size);
-    console.log(space_scale);
+    if(window.console) {
+	console.log(space_scale);
+    }
     var radius = 7;
     if (grid_size == 10) radius = 10;
     else if (grid_size == 50) radius = 5;
@@ -49,7 +51,11 @@ Skylight = function(json) {
         var coords = task_id_to_coords(item.id);
         var act = item.action;
         if (!circles[coords.idx]) {
-            if (act != 'CREATED') console.log('Unexpected act ' + act + ': ' + coords.idx);
+            if (act != 'CREATED') {
+		if(window.console) {
+		    console.log('Unexpected act ' + act + ': ' + coords.idx);
+		}
+	    }
             circles[coords.idx] = paper.circle(coords.x, coords.y, radius);
             circles[coords.idx].attr({
                 'fill': 'red',
